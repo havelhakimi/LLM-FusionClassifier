@@ -4,8 +4,9 @@
 - Instead of fine-tuning LLMs, we extract their representations and train a compact classifier that integrates semantic knowledge and feature interactions through co-occurrence pooling and power normalization. This method ensures an efficient, scalable, and expressive emotion classification pipeline.
 
 ## Feature Extraction for LLaMA2, BERT-large, and RoBERTa-large
-The code for creating and saving feature tensors is in `X_rep_extract.py`, where `X` represents `llama2`, `bert`, or `roberta`. The data for ED and go_emotion is `data` folder. For example, to extract and save LLaMA2 feature tensors for the training set on ED dataset, run the following </br>  
-```python llama2_rep_extract.py -device cuda -task ED -mode train``` </br>
-Some imp arguments : `-task` denotes name of dataset possible options are `ED` and `go_emotion`. `-mode` Possible options are `train`, `test` and `valid`.
+- The code for creating and saving feature tensors is in `X_rep_extract.py`, where `X` represents `llama2`, `bert`, or `roberta`. 
+- The data for ED and go_emotion is `data` folder. For example, to extract and save LLaMA2 feature tensors for the training set on ED dataset, run the following </br>  
+- ```python llama2_rep_extract.py -device cuda -task ED -mode train``` </br>
+- Some imp arguments : `-task` denotes name of dataset possible options are `ED` and `go_emotion`. `-mode` Possible options are `train`, `test` and `valid`.
 
 
