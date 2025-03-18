@@ -1,0 +1,31 @@
+==========================================
+SLURM_CLUSTER_NAME = paramganga
+SLURM_ARRAY_JOB_ID = 
+SLURM_ARRAY_TASK_ID = 
+SLURM_ARRAY_TASK_COUNT = 
+SLURM_ARRAY_TASK_MAX = 
+SLURM_ARRAY_TASK_MIN = 
+SLURM_JOB_ACCOUNT = iitr
+SLURM_JOB_ID = 330552
+SLURM_JOB_NAME = 7.sh
+SLURM_JOB_NODELIST = gpu020
+SLURM_JOB_USER = ashish_k.iitr
+SLURM_JOB_UID = 38192
+SLURM_JOB_PARTITION = gpu
+SLURM_TASK_PID = 25748
+SLURM_SUBMIT_DIR = /scratch/ashish_k.iitr/HPT/LLMembed_fec/script
+SLURM_CPUS_ON_NODE = 1
+SLURM_NTASKS = 1
+SLURM_TASK_PID = 25748
+==========================================
+Tue Mar 11 15:21:48 IST 2025
+Namespace(device='cuda', mode='train', task='ED')
+torch.Size([17802, 1024])
+torch.Size([17802])
+Namespace(device='cuda', mode='test', task='ED')
+torch.Size([2541, 1024])
+torch.Size([2541])
+Namespace(device='cuda', mode='valid', task='ED')
+torch.Size([2761, 1024])
+torch.Size([2761])
+Tue Mar 11 15:24:10 IST 2025
