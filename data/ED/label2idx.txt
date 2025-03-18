@@ -1,0 +1,34 @@
+sad 0
+trusting 1
+terrified 2
+caring 3
+disappointed 4
+faithful 5
+joyful 6
+jealous 7
+disgusted 8
+surprised 9
+ashamed 10
+afraid 11
+impressed 12
+sentimental 13
+devastated 14
+excited 15
+anticipating 16
+annoyed 17
+anxious 18
+furious 19
+content 20
+lonely 21
+angry 22
+confident 23
+apprehensive 24
+guilty 25
+embarrassed 26
+grateful 27
+hopeful 28
+proud 29
+prepared 30
+nostalgic 31
+
+        
