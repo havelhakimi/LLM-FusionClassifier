@@ -21,8 +21,8 @@
 - For BERT/RoBERTa, the embedding dimension is 1024. We save the representation of the [CLS] token (i.e., the 0th token) from the final layer. For each sample, we store a tensor of shape (1024). For reference, see the log files in the `Logs` folder.
 
 ## Run the LLM-fusion classifier
-After feature extraction and saving tensors inside the `data` folder, run the following script to train the FEC on ED dataset. 
-```python main.py -dataset 'ED' ```
+After feature extraction and saving tensors inside the `data` folder, run the following script to train the FEC on ED dataset. </br>
+```python main.py -dataset 'ED' ``` </br>
 There are a few other optional runtime arguments, which can be found in `main.py`
 
 ## Feature Fusion, Co-occurrence Pooling Followed by Classification
