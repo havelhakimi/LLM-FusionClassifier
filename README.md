@@ -26,7 +26,7 @@ After feature extraction and saving tensors inside the `data` folder, run the fo
 There are a few other optional runtime arguments, which can be found in `main.py`
 
 ## Results on test set
-We report average of 5 random runs 
+We report the average results over 5 independent random runs.
 ### For ED:
 ### For go_emotion:
 The results 
