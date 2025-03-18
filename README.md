@@ -25,6 +25,12 @@ After feature extraction and saving tensors inside the `data` folder, run the fo
 ```python main.py -dataset 'ED' ``` </br>
 There are a few other optional runtime arguments, which can be found in `main.py`
 
+## Results on test set
+We report average of 5 random runs 
+### For ED:
+### For go_emotion:
+The results 
+
 ## Explanation of Structured Feature Fusion and Co-occurrence Pooling Used in the LLM-Fusion Classifier
 The code for this module is in `DownstreamModel.py`
 ### 1. Compression of LLaMA2 Features
