@@ -25,32 +25,32 @@ After feature extraction and saving tensors inside the `data` folder, run the fo
 ```python main.py -dataset 'ED' ``` </br>
 There are a few other optional runtime arguments, which can be found in `main.py`
 
-## Feature Fusion, Co-occurrence Pooling Followed by Classification
+## Explanation of Structured Feature Fusion and Co-occurrence Pooling Used in the LLM-Fusion Classifier
 The code for this module is in `DownstreamModel.py`
 ### 1. Compression of LLaMA2 Features
-- LLaMA2 produces **(5, 4096) embeddings per sample**.
-- Each **4096-d embedding** is **compressed to 1024-d** using a **linear transformation (`4096 → 1024`)**.
-- This results in a **compressed representation of shape (5, 1024)**.
+- LLaMA2 produces (5, 4096) embeddings per sample.
+- Each 4096-d embedding is compressed to 1024-d using a linear transformation (`4096 → 1024`).
+- This results in a compressed representation of shape (5, 1024).
 
 ### 2. Concatenation with BERT and RoBERTa Features
-- The **compressed LLaMA2 embeddings (5, 1024)** are combined with:
-  - **BERT CLS embedding** (1024)
-  - **RoBERTa CLS embedding** (1024)
-- The final representation is **stacked into a tensor of shape (7, 1024)** per sample.
+- The compressed LLaMA2 embeddings (5, 1024) are combined with:
+  - BERT CLS embedding (1024)
+  - RoBERTa CLS embedding (1024)
+- The final representation is stacked into a tensor of shape (7, 1024) per sample.
 
 ### 3. Co-occurrence Pooling for Feature Interaction
-- Instead of simple concatenation, we compute **pairwise feature interactions**.
-- The **interaction matrix (7×7) is computed using dot products**.
-- This is then **flattened into a vector of size 49**.
+- Instead of simple concatenation, we compute pairwise feature interactions.
+- The interaction matrix (7×7) is computed using dot products.
+- This is then flattened into a vector of size 49.
 
 ### 4. Power Normalization for Scaling
-- A **nonlinear transformation (`tanh(2*sigma*X)`)** is applied to rescale interaction values to (-1,1). sigma is a hyperparameter whcih we can be tuned. We have used a deafult value of 1. 
-- This ensures **balanced feature magnitudes**.
+- A nonlinear transformation (`tanh(2*sigma*X)`) is applied to rescale interaction values to (-1,1). sigma is a hyperparameter that can be tuned. We have used a default value of 1.
+- This ensures balanced feature magnitudes.
 
 ### 5. Fusion with LLaMA2 Mean Representation
-- The **mean-pooled LLaMA2 embedding (4096-d)** is computed.
-- The final representation is **concatenated as `[interaction_features (49) + mean_LLaMA2 (4096)]`**.
-- This results in a **final feature vector of size (4145-d) per sample**.
+- The mean-pooled LLaMA2 embedding (4096-d) is computed.
+- The final representation is concatenated as `[interaction_features (49) + mean_LLaMA2 (4096)]`.
+- This results in a final feature vector of size (4145-d) per sample.
 
 ### 6. Feedforward network for classification 
 - A small feedforward network maps features to logit scores, which are used for classification.
