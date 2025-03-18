@@ -9,6 +9,7 @@
 - To extract and save LLaMA2 feature tensors for the training set on ED dataset, run the following:
   - ```python llama2_rep_extract.py -device cuda -task ED -mode train```
 - Some imp arguments : `-task` denotes name of dataset possible options are `ED` and `go_emotion`. `-mode` Possible options are `train`, `test` and `valid`.
+- For ED, the tensors will be saved inside 'dataset\ED\llama2_7b_chat\`. Similarly for go_emotion
 - For LLaMA2, the possible model choices are the base model [Llama-2-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf) and the version optimized for dialogue use cases, [Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf). We used `Llama-2-7b-chat-hf` because `Llama-2-7b-hf` produced NaN values on the validation and test sets.
 - For LLaMA2, the embedding dimension is 4096. We average the embeddings across all tokens in the last 5 layers and save the resulting tensor of shape (5, 4096) per sample, where 5 represents the last 5 layers. For reference, see the log file `Create_data_LLAMA2_GO.out` in the `Logs` folder.
 
@@ -16,7 +17,13 @@
 - The code for creating and saving feature tensors is in `X_rep_extract.py` where X is bert/roberta. The data for ED and go_emotion is `data` folder.
 - To extract and save bert feature tensors for the training set on ED dataset, run the following:
   - ```python bert_rep_extract.py -device cuda -task ED -mode train```
+- For ED, the tensors will be saved inside 'dataset\ED\bert\`. Likewise the tensors in case of roberta will be saved inside 'dataset\ED\roberta\`. Similarly it will be saved for go_emotion.
 - For BERT/RoBERTa, the embedding dimension is 1024. We save the representation of the [CLS] token (i.e., the 0th token) from the final layer. For each sample, we store a tensor of shape (1024). For reference, see the log files in the `Logs` folder.
+
+## Run the LLM-fusion classifier
+After feature extraction and saving tensors inside the `data` folder, run the following script to train the FEC on ED dataset. 
+```python main.py -dataset 'ED' ```
+There are a few other optional runtime arguments, which can be found in `main.py`
 
 ## Feature Fusion, Co-occurrence Pooling Followed by Classification
 The code for this module is in `DownstreamModel.py`
@@ -37,7 +44,7 @@ The code for this module is in `DownstreamModel.py`
 - This is then **flattened into a vector of size 49**.
 
 ### 4. Power Normalization for Scaling
-- A **nonlinear transformation (`tanh(2σX)`)** is applied to rescale interaction values to (-1,1).
+- A **nonlinear transformation (`tanh(2*sigma*X)`)** is applied to rescale interaction values to (-1,1). sigma is a hyperparameter whcih we can be tuned. We have used a deafult value of 1. 
 - This ensures **balanced feature magnitudes**.
 
 ### 5. Fusion with LLaMA2 Mean Representation
@@ -45,8 +52,10 @@ The code for this module is in `DownstreamModel.py`
 - The final representation is **concatenated as `[interaction_features (49) + mean_LLaMA2 (4096)]`**.
 - This results in a **final feature vector of size (4145-d) per sample**.
 
-### 6. Lightweight classification model
+### 6. Feedforward network for classification 
 - A small feedforward network maps features to logit scores, which are used for classification.
+
+
 
 
 
