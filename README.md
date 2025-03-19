@@ -28,7 +28,7 @@ There are a few other optional runtime arguments, which can be found in `main.py
 ## Results on test set
 We report the average results over 5 independent random runs.
 ### For ED:
-### For go_emotion:
+### For go_emotion: Acc: 58.13±0.40; F1-score
 The results 
 
 ## Explanation of Structured Feature Fusion and Co-occurrence Pooling Used in the LLM-Fusion Classifier
