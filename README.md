@@ -1,4 +1,4 @@
-# LLM-FusionClassifier: for Fine-grained Emotion Classification
+# LLM-FusionClassifier: for Fine-grained Emotion Classification (Single-label classification)
 - We perform Fine-grained Emotion Classification (FEC) on benchmark datasets using `Empathetic Dialogues(ED)` (32 labels) and `GoEmotions` (27 labels).
 - Our approach leverages feature extraction from three large language models (LLMs)—**Llama-2-7b-chat**, **BERT-large**, and **RoBERTa-large**—followed by a structured feature fusion and a lightweight classification model.  The feature fusion method is adapted from the ACL 2024 paper [LLMEmbed](https://aclanthology.org/2024.acl-long.433/) with the corresponding [GitHub repository](https://github.com/ChunLiu-cs/LLMEmbed-ACL2024).
 - Instead of fine-tuning LLMs, we extract their representations and train a compact classifier that integrates semantic knowledge and feature interactions through co-occurrence pooling and power normalization. This method ensures an efficient, scalable, and expressive emotion classification pipeline.
@@ -27,8 +27,8 @@ There are a few other optional runtime arguments, which can be found in `main.py
 
 ## Results on test set
 We report the average results over 5 independent random runs.
-### For ED:
-### For go_emotion: Acc: 58.13±0.40; F1-score
+### For ED: Acc: 60.44±0.47; weighted-F1 score: 59.80±0.54
+### For go_emotion: Acc: 58.13±0.40; weighted-F1 score: 57.54±0.23
 The results 
 
 ## Explanation of Structured Feature Fusion and Co-occurrence Pooling Used in the LLM-Fusion Classifier
