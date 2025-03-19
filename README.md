@@ -29,8 +29,7 @@ There are a few other optional runtime arguments, which can be found in `main.py
 We report the average results over 5 independent random runs.
 ### For ED: Acc: 60.44±0.47; weighted-F1 score: 59.80±0.54
 ### For go_emotion: Acc: 58.13±0.40; weighted-F1 score: 57.54±0.23
-The results 
-
+The results on the ED dataset are comparable to [SOTA](https://aclanthology.org/2023.acl-long.613/) approaches, whereas for GoEmotions, the performance is significantly below the current SOTA. The Empathetic Dialogues (ED) dataset consists of conversational dialogues, which align well with the underlying LLaMA-2-7B-Chat model, as it is also fine-tuned for dialogue-based use cases. The GoEmotions (go_emotions) dataset consists of Reddit comments, which differ in style and structure from conversational dialogues. Since LLaMA-2-7B-Chat is optimized for dialogues, this domain mismatch likely contributes to its lower performance on GoEmotions.
 ## Explanation of Structured Feature Fusion and Co-occurrence Pooling Used in the LLM-Fusion Classifier
 The code for this module is in `DownstreamModel.py`
 ### 1. Compression of LLaMA2 Features
