@@ -90,19 +90,19 @@ if __name__ == '__main__':
 
         early_stop_count += 1
 
-        # ✅ Store test metrics only when best validation loss OR best validation F1 occurs
+        # Store test metrics only when best validation loss OR best validation F1 occurs
         if valid_loss < best_valid_loss:
             early_stop_count = 0
             best_valid_loss = valid_loss
-            best_test_acc = test_acc  # ✅ Save test accuracy from this epoch
-            best_test_wf1 = test_wf1  # ✅ Save test F1-score from this epoch
+            best_test_acc = test_acc  # Save test accuracy from this epoch
+            best_test_wf1 = test_wf1  # Save test F1-score from this epoch
 
         if valid_wf1 > best_valid_wf1:
             early_stop_count = 0
             best_valid_wf1 = valid_wf1
             best_valid_acc = valid_acc  # Track best valid acc (optional)
-            best_test_acc = test_acc  # ✅ Save test accuracy from this epoch
-            best_test_wf1 = test_wf1  # ✅ Save test F1-score from this epoch
+            best_test_acc = test_acc  #  Save test accuracy from this epoch
+            best_test_wf1 = test_wf1  # Save test F1-score from this epoch
 
                 
     print()
